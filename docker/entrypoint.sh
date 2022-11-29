@@ -4,7 +4,8 @@
 trap ctrl_c INT
 
 function ctrl_c() {
-        echo "CTRL-C detectado, finalizando contenedor..."
+    echo "CTRL-C detectado, finalizando contenedor y eliminando el runner..."
+    ./config.sh remove --token $RUNNER_TOKEN
 }
 
 if [[ "$@" == "bash" ]]; then
