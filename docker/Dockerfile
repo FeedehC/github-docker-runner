@@ -39,9 +39,9 @@ RUN python3 -m pip install --upgrade pip && \
 
 WORKDIR /home/runner
 
-RUN curl -o actions-runner-linux-x64-${GH_RUNNER_VERSION}.tar.gz -L https://github.com/actions/runner/releases/download/v${GH_RUNNER_VERSION}/actions-runner-linux-x64-${GH_RUNNER_VERSION}.tar.gz
-
-RUN tar xzf ./actions-runner-linux-x64-${GH_RUNNER_VERSION}.tar.gz && rm ./actions-runner-linux-x64-${GH_RUNNER_VERSION}.tar.gz
+RUN curl -o actions-runner-linux-x64-${GH_RUNNER_VERSION}.tar.gz -L https://github.com/actions/runner/releases/download/v${GH_RUNNER_VERSION}/actions-runner-linux-x64-${GH_RUNNER_VERSION}.tar.gz && \
+tar xzf ./actions-runner-linux-x64-${GH_RUNNER_VERSION}.tar.gz && \
+rm ./actions-runner-linux-x64-${GH_RUNNER_VERSION}.tar.gz
 
 COPY ./entrypoint.sh ./entrypoint.sh
 
