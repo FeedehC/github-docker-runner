@@ -1,10 +1,24 @@
 #!/bin/bash
 
 # trap ctrl-c and call ctrl_c()
-trap ctrl_c INT
+trap ctrl_c SIGINT
 
 function ctrl_c() {
-    echo "CTRL-C detectado, finalizando contenedor y eliminando el runner..."
+    echo "SIGINT (CTRL-C) detectado, finalizando contenedor y eliminando el runner..."
+    ./config.sh remove --token $RUNNER_TOKEN
+}
+
+trap sigterm SIGTERM
+
+function sigterm() {
+    echo "SIGTERM detectado, finalizando contenedor y eliminando el runner..."
+    ./config.sh remove --token $RUNNER_TOKEN
+}
+
+trap sigkill SIGKILL
+
+function sigkill() {
+    echo "SIGKILL detectado, finalizando contenedor y eliminando el runner..."
     ./config.sh remove --token $RUNNER_TOKEN
 }
 
