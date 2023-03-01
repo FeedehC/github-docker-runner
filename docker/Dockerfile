@@ -16,6 +16,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt update && \
     apt install -y \
         curl \
         tar \
+        git \
         python3-pip \
         apt-transport-https \
         ca-certificates \
@@ -35,6 +36,7 @@ RUN python3 -m pip install --upgrade pip && \
     pip install platformio && \
     pip install PyGithub && \
     pip install requests_toolbelt && \
+    pip install --upgrade requests && \
     pip install tqdm
 
 WORKDIR /home/runner
