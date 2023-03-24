@@ -1,7 +1,9 @@
 FROM ubuntu:20.04
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG GH_RUNNER_VERSION="2.302.1"
+ARG GH_RUNNER_VERSION="2.303.0"
+ARG GH_RUNNER_ARCHITECTURE="linux-arm64"
+#Architectures: linux-x64 / linux-arm64 / linuxarm / win-x64 / win-arm64 / osx-x64 / osx-arm64
 
 ENV RUNNER_NAME=""
 ENV RUNNER_WORK_DIRECTORY="_work"
@@ -41,9 +43,9 @@ RUN python3 -m pip install --upgrade pip && \
 
 WORKDIR /home/runner
 
-RUN curl -o actions-runner-linux-x64-${GH_RUNNER_VERSION}.tar.gz -L https://github.com/actions/runner/releases/download/v${GH_RUNNER_VERSION}/actions-runner-linux-x64-${GH_RUNNER_VERSION}.tar.gz && \
-tar xzf ./actions-runner-linux-x64-${GH_RUNNER_VERSION}.tar.gz && \
-rm ./actions-runner-linux-x64-${GH_RUNNER_VERSION}.tar.gz
+RUN curl -o actions-runner-${GH_RUNNER_ARCHITECTURE}-${GH_RUNNER_VERSION}.tar.gz -L https://github.com/actions/runner/releases/download/v${GH_RUNNER_VERSION}/actions-runner-${GH_RUNNER_ARCHITECTURE}-${GH_RUNNER_VERSION}.tar.gz && \
+tar xzf ./actions-runner-${GH_RUNNER_ARCHITECTURE}-${GH_RUNNER_VERSION}.tar.gz && \
+rm ./actions-runner-${GH_RUNNER_ARCHITECTURE}-${GH_RUNNER_VERSION}.tar.gz
 
 COPY ./entrypoint.sh ./entrypoint.sh
 
