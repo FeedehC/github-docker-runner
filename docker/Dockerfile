@@ -2,8 +2,8 @@ FROM ubuntu:20.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG GH_RUNNER_VERSION="2.303.0"
-ARG GH_RUNNER_ARCHITECTURE="linux-arm64"
-#Architectures: linux-x64 / linux-arm64 / linuxarm / win-x64 / win-arm64 / osx-x64 / osx-arm64
+ARG GH_RUNNER_ARCHITECTURE="linux-arm"
+#Architectures: linux-x64 / linux-arm64 / linux-arm / win-x64 / win-arm64 / osx-x64 / osx-arm64
 
 ENV RUNNER_NAME=""
 ENV RUNNER_WORK_DIRECTORY="_work"
@@ -20,6 +20,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt update && \
         tar \
         git \
         python3-pip \
+        apt-utils \
         apt-transport-https \
         ca-certificates \
         software-properties-common \
@@ -35,11 +36,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt update && \
     apt clean
 
 RUN python3 -m pip install --upgrade pip && \
-    pip install platformio && \
-    pip install PyGithub && \
-    pip install requests_toolbelt && \
-    pip install --upgrade requests && \
-    pip install tqdm
+    pip install platformio
 
 WORKDIR /home/runner
 
