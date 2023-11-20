@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG GH_RUNNER_VERSION="2.307.1"
+ARG GH_RUNNER_VERSION="2.311.0"
 ARG GH_RUNNER_ARCHITECTURE="linux-arm"
 #Architectures: linux-x64 / linux-arm64 / linux-arm / win-x64 / win-arm64 / osx-x64 / osx-arm64
 
